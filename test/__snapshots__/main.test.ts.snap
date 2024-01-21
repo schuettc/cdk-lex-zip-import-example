@@ -1,0 +1,933 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot 1`] = `
+Object {
+  "Parameters": Object {
+    "BootstrapVersion": Object {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": Object {
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536": Object {
+      "DependsOn": Array [
+        "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
+        "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "e976a796f036a5efbf44b99e44cfb5a961df08d8dbf7cd37e60bf216fb982a00.zip",
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "AWS_CA_BUNDLE": "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem",
+          },
+        },
+        "Handler": "index.handler",
+        "Layers": Array [
+          Object {
+            "Ref": "lexBotlexZipBucketlexZipBucketDeployAwsCliLayerB553509A",
+          },
+        ],
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.9",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::",
+                      Object {
+                        "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+                      },
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::",
+                      Object {
+                        "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "lexBotlexZipBucketEBBAC7D0",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "lexBotlexZipBucketEBBAC7D0",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
+        "Roles": Array [
+          Object {
+            "Ref": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": Object {
+      "DependsOn": Array [
+        "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "b7f33614a69548d6bafe224d751a7ef238cde19097415e553fe8b63a4c8fd8a6.zip",
+        },
+        "Description": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "Lambda function for auto-deleting objects in ",
+              Object {
+                "Ref": "lexBotlexZipBucketEBBAC7D0",
+              },
+              " S3 bucket.",
+            ],
+          ],
+        },
+        "Handler": "index.handler",
+        "MemorySize": 128,
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "LexImportCustomResource2C8D5BB1": Object {
+      "DependsOn": Array [
+        "lexBotLexBotImportlexCustomResourceRoleDefaultPolicy9FF006DD",
+        "lexBotLexBotImportlexCustomResourceRoleA6C5A4F5",
+      ],
+      "Properties": Object {
+        "Architectures": Array [
+          "arm64",
+        ],
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "68077aba7883099179d68f741d5f3c1bb3b387137025262766fb7add7f39422c.zip",
+        },
+        "Handler": "index.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "lexBotLexBotImportlexCustomResourceRoleA6C5A4F5",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.9",
+        "Timeout": 60,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "lexBotLexBotImportLexImportCustomResource240635DA": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "lexBotlexZipBucketAutoDeleteObjectsCustomResource3A0EB202",
+        "lexBotlexZipBucketPolicy6A641FA0",
+        "lexBotlexZipBucketEBBAC7D0",
+        "lexBotlexZipBucketlexZipBucketDeployAwsCliLayerB553509A",
+        "lexBotlexZipBucketlexZipBucketDeployCustomResourceAAB58A12",
+      ],
+      "Properties": Object {
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "lexBotLexBotImportLexImportProviderframeworkonEventCCB0F886",
+            "Arn",
+          ],
+        },
+        "function": "importBot",
+        "lexRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "lexRoleE3E65104",
+            "Arn",
+          ],
+        },
+        "lexZipBucket": Object {
+          "Ref": "lexBotlexZipBucketEBBAC7D0",
+        },
+        "uid": "testlexBot16848E6A",
+      },
+      "Type": "AWS::CloudFormation::CustomResource",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "lexBotLexBotImportLexImportProviderframeworkonEventCCB0F886": Object {
+      "DependsOn": Array [
+        "lexBotLexBotImportLexImportProviderframeworkonEventServiceRoleDefaultPolicy35C8D9F5",
+        "lexBotLexBotImportLexImportProviderframeworkonEventServiceRole97D7277C",
+        "lexBotlexZipBucketAutoDeleteObjectsCustomResource3A0EB202",
+        "lexBotlexZipBucketPolicy6A641FA0",
+        "lexBotlexZipBucketEBBAC7D0",
+        "lexBotlexZipBucketlexZipBucketDeployAwsCliLayerB553509A",
+        "lexBotlexZipBucketlexZipBucketDeployCustomResourceAAB58A12",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "7382a0addb9f34974a1ea6c6c9b063882af874828f366f5c93b2b7b64db15c94.zip",
+        },
+        "Description": "AWS CDK resource provider framework - onEvent (test/lexBot/LexBotImport/LexImportProvider)",
+        "Environment": Object {
+          "Variables": Object {
+            "USER_ON_EVENT_FUNCTION_ARN": Object {
+              "Fn::GetAtt": Array [
+                "LexImportCustomResource2C8D5BB1",
+                "Arn",
+              ],
+            },
+          },
+        },
+        "Handler": "framework.onEvent",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "lexBotLexBotImportLexImportProviderframeworkonEventServiceRole97D7277C",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "lexBotLexBotImportLexImportProviderframeworkonEventServiceRole97D7277C": Object {
+      "DependsOn": Array [
+        "lexBotlexZipBucketAutoDeleteObjectsCustomResource3A0EB202",
+        "lexBotlexZipBucketPolicy6A641FA0",
+        "lexBotlexZipBucketEBBAC7D0",
+        "lexBotlexZipBucketlexZipBucketDeployAwsCliLayerB553509A",
+        "lexBotlexZipBucketlexZipBucketDeployCustomResourceAAB58A12",
+      ],
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "lexBotLexBotImportLexImportProviderframeworkonEventServiceRoleDefaultPolicy35C8D9F5": Object {
+      "DependsOn": Array [
+        "lexBotlexZipBucketAutoDeleteObjectsCustomResource3A0EB202",
+        "lexBotlexZipBucketPolicy6A641FA0",
+        "lexBotlexZipBucketEBBAC7D0",
+        "lexBotlexZipBucketlexZipBucketDeployAwsCliLayerB553509A",
+        "lexBotlexZipBucketlexZipBucketDeployCustomResourceAAB58A12",
+      ],
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "LexImportCustomResource2C8D5BB1",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "LexImportCustomResource2C8D5BB1",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "lexBotLexBotImportLexImportProviderframeworkonEventServiceRoleDefaultPolicy35C8D9F5",
+        "Roles": Array [
+          Object {
+            "Ref": "lexBotLexBotImportLexImportProviderframeworkonEventServiceRole97D7277C",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "lexBotLexBotImportlexCustomResourceRoleA6C5A4F5": Object {
+      "DependsOn": Array [
+        "lexBotlexZipBucketAutoDeleteObjectsCustomResource3A0EB202",
+        "lexBotlexZipBucketPolicy6A641FA0",
+        "lexBotlexZipBucketEBBAC7D0",
+        "lexBotlexZipBucketlexZipBucketDeployAwsCliLayerB553509A",
+        "lexBotlexZipBucketlexZipBucketDeployCustomResourceAAB58A12",
+      ],
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "lex:UpdateSlot",
+                    "lex:ListBots",
+                    "lex:UpdateBotAlias",
+                    "lex:DeleteCustomVocabulary",
+                    "lex:DeleteBotVersion",
+                    "lex:DeleteBotChannel",
+                    "lex:CreateResourcePolicy",
+                    "lex:UpdateBotLocale",
+                    "lex:ListBotAliases",
+                    "lex:CreateCustomVocabulary",
+                    "lex:CreateBotLocale",
+                    "lex:DeleteIntent",
+                    "lex:StartImport",
+                    "lex:UpdateSlotType",
+                    "lex:BuildBotLocale",
+                    "lex:CreateBot",
+                    "lex:DeleteBotAlias",
+                    "lex:CreateIntent",
+                    "lex:CreateUploadUrl",
+                    "lex:DeleteBot",
+                    "lex:CreateBotAlias",
+                    "lex:CreateSlotType",
+                    "lex:DeleteBotLocale",
+                    "lex:UpdateCustomVocabulary",
+                    "lex:UpdateResourcePolicy",
+                    "lex:CreateSlot",
+                    "lex:DeleteSlot",
+                    "lex:UpdateBot",
+                    "lex:DeleteSlotType",
+                    "lex:UpdateIntent",
+                    "lex:DeleteResourcePolicy",
+                    "iam:PassRole",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "*",
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "lambdaPolicy",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "lexBotLexBotImportlexCustomResourceRoleDefaultPolicy9FF006DD": Object {
+      "DependsOn": Array [
+        "lexBotlexZipBucketAutoDeleteObjectsCustomResource3A0EB202",
+        "lexBotlexZipBucketPolicy6A641FA0",
+        "lexBotlexZipBucketEBBAC7D0",
+        "lexBotlexZipBucketlexZipBucketDeployAwsCliLayerB553509A",
+        "lexBotlexZipBucketlexZipBucketDeployCustomResourceAAB58A12",
+      ],
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "lexBotlexZipBucketEBBAC7D0",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "lexBotlexZipBucketEBBAC7D0",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "lexBotLexBotImportlexCustomResourceRoleDefaultPolicy9FF006DD",
+        "Roles": Array [
+          Object {
+            "Ref": "lexBotLexBotImportlexCustomResourceRoleA6C5A4F5",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "lexBotlexZipBucketAutoDeleteObjectsCustomResource3A0EB202": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "lexBotlexZipBucketPolicy6A641FA0",
+      ],
+      "Properties": Object {
+        "BucketName": Object {
+          "Ref": "lexBotlexZipBucketEBBAC7D0",
+        },
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "lexBotlexZipBucketEBBAC7D0": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+          Object {
+            "Key": "aws-cdk:cr-owned:c2313e0f",
+            "Value": "true",
+          },
+        ],
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "lexBotlexZipBucketPolicy6A641FA0": Object {
+      "Properties": Object {
+        "Bucket": Object {
+          "Ref": "lexBotlexZipBucketEBBAC7D0",
+        },
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "s3:PutBucketPolicy",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::GetAtt": Array [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "lexBotlexZipBucketEBBAC7D0",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "lexBotlexZipBucketEBBAC7D0",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "lexBotlexZipBucketlexZipBucketDeployAwsCliLayerB553509A": Object {
+      "Properties": Object {
+        "Content": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "3322b7049fb0ed2b7cbb644a2ada8d1116ff80c32dca89e6ada846b5de26f961.zip",
+        },
+        "Description": "/opt/awscli/aws",
+      },
+      "Type": "AWS::Lambda::LayerVersion",
+    },
+    "lexBotlexZipBucketlexZipBucketDeployCustomResourceAAB58A12": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "DestinationBucketName": Object {
+          "Ref": "lexBotlexZipBucketEBBAC7D0",
+        },
+        "Prune": true,
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536",
+            "Arn",
+          ],
+        },
+        "SourceBucketNames": Array [
+          Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+        ],
+        "SourceObjectKeys": Array [
+          "dba2b3cd1042c5a97f1df7dbe2e1e0be93f3c69c7667977e31c48e8f6af8aec0.zip",
+        ],
+      },
+      "Type": "Custom::CDKBucketDeployment",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "lexBotresourcePolicyAssociationLexImportCustomResource24BBC41E": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "lexBotresourcePolicyAssociationLexImportProviderframeworkonEvent8FC64456",
+            "Arn",
+          ],
+        },
+        "function": "addResourcePolicy",
+        "policy": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"Version\\":\\"2012-10-17\\",\\"Statement\\":[{\\"Sid\\":\\"AllowChimePstnAudioUseBot\\",\\"Effect\\":\\"Allow\\",\\"Principal\\":{\\"Service\\":\\"voiceconnector.chime.amazonaws.com\\"},\\"Action\\":\\"lex:StartConversation\\",\\"Resource\\":\\"arn:aws:lex:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":bot-alias/",
+              Object {
+                "Fn::GetAtt": Array [
+                  "lexBotLexBotImportLexImportCustomResource240635DA",
+                  "bot_id",
+                ],
+              },
+              "/",
+              Object {
+                "Fn::GetAtt": Array [
+                  "lexBotLexBotImportLexImportCustomResource240635DA",
+                  "bot_alias_id",
+                ],
+              },
+              "\\",\\"Condition\\":{\\"StringEquals\\":{\\"AWS:SourceAccount\\":\\"",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              "\\"},\\"ArnEquals\\":{\\"AWS:SourceArn\\":\\"arn:aws:voiceconnector:us-east-1:",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":*\\"}}}]}",
+            ],
+          ],
+        },
+        "resourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:aws:lex:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":bot-alias/",
+              Object {
+                "Fn::GetAtt": Array [
+                  "lexBotLexBotImportLexImportCustomResource240635DA",
+                  "bot_id",
+                ],
+              },
+              "/",
+              Object {
+                "Fn::GetAtt": Array [
+                  "lexBotLexBotImportLexImportCustomResource240635DA",
+                  "bot_alias_id",
+                ],
+              },
+            ],
+          ],
+        },
+        "uid": "testlexBot16848E6A",
+      },
+      "Type": "AWS::CloudFormation::CustomResource",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "lexBotresourcePolicyAssociationLexImportProviderframeworkonEvent8FC64456": Object {
+      "DependsOn": Array [
+        "lexBotresourcePolicyAssociationLexImportProviderframeworkonEventServiceRoleDefaultPolicyE6836D25",
+        "lexBotresourcePolicyAssociationLexImportProviderframeworkonEventServiceRole9425D463",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "7382a0addb9f34974a1ea6c6c9b063882af874828f366f5c93b2b7b64db15c94.zip",
+        },
+        "Description": "AWS CDK resource provider framework - onEvent (test/lexBot/resourcePolicyAssociation/LexImportProvider)",
+        "Environment": Object {
+          "Variables": Object {
+            "USER_ON_EVENT_FUNCTION_ARN": Object {
+              "Fn::GetAtt": Array [
+                "LexImportCustomResource2C8D5BB1",
+                "Arn",
+              ],
+            },
+          },
+        },
+        "Handler": "framework.onEvent",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "lexBotresourcePolicyAssociationLexImportProviderframeworkonEventServiceRole9425D463",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "lexBotresourcePolicyAssociationLexImportProviderframeworkonEventServiceRole9425D463": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "lexBotresourcePolicyAssociationLexImportProviderframeworkonEventServiceRoleDefaultPolicyE6836D25": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "LexImportCustomResource2C8D5BB1",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "LexImportCustomResource2C8D5BB1",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "lexBotresourcePolicyAssociationLexImportProviderframeworkonEventServiceRoleDefaultPolicyE6836D25",
+        "Roles": Array [
+          Object {
+            "Ref": "lexBotresourcePolicyAssociationLexImportProviderframeworkonEventServiceRole9425D463",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "lexRoleE3E65104": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lex.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "polly:SynthesizeSpeech",
+                    "comprehend:DetectSentiment",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "*",
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "lexPolicy",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+  },
+  "Rules": Object {
+    "CheckBootstrapVersion": Object {
+      "Assertions": Array [
+        Object {
+          "Assert": Object {
+            "Fn::Not": Array [
+              Object {
+                "Fn::Contains": Array [
+                  Array [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  Object {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

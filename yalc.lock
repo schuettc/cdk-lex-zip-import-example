@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "packages": {
+    "@schuettc/cdk-lex-zip-import": {
+      "signature": "22bf716fa8c9a85a916c9b1abc0f69c6",
+      "file": true,
+      "replaced": "^0.0.0"
+    },
+    "cdk-lex-zip-import": {
+      "version": "0.0.0",
+      "signature": "634604f808859b6add71ffd7eb7d65e8",
+      "file": true
+    }
+  }
+}
